@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,8 +23,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" style="color: #283B70;" href="{{ url('/') }}">
+                    <b-icon-bag-check-fill class="pb-1"></b-icon-bag-check-fill>
+                    <strong>{{ config('app.name', 'Laravel') }}</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -75,9 +76,20 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main style="background: #364b98;" class="py-4">
             @yield('content')
         </main>
+
+        <div class="container">
+            <footer class="py-3 my-4">
+              <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="https://www.linkedin.com/in/victor-almeida-44b42014a/" class="nav-link px-2 text-muted">Linkedin</a></li>
+                <li class="nav-item"><a href="https://github.com/umserqualquer/telzir-app" class="nav-link px-2 text-muted">Github</a></li>
+              </ul>
+              <p class="text-center text-muted">&copy; 2021 Victor Developer</p>
+            </footer>
+          </div>
     </div>
 </body>
 </html>

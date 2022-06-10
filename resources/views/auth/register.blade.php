@@ -29,7 +29,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -59,6 +59,51 @@
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="cpf" class="col-md-4 col-form-label text-md-end">{{ __('Cpf') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cpf" type="cpf" class="form-control @error('cpf') is-invalid @enderror" name="cpf" autocomplete="cpf">
+
+                                @error('cpf')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="cpf" class="col-md-4 col-form-label text-md-end">{{ __('Cnpj') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cnpj" type="cnpj" class="form-control @error('cpf') is-invalid @enderror" name="cnpj" autocomplete="cnpj">
+
+                                @error('cnpj')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="account_type" class="col-md-4 col-form-label text-md-end">{{ __('Tipo de Conta:') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-select @error('cpf') is-invalid @enderror" id="account_type" name="account_type" aria-label="Default select example">
+                                    <option value="cpf" selected>Pessoa Fisica</option>
+                                    <option value="cnpj">Pessoa Juridica</option>
+                                </select>
+                            </div>
+
+                            @error('account_type')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="row mb-0">

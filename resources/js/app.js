@@ -28,6 +28,7 @@
  Vue.component('example-component', require('./components/ExampleComponent.vue').default);
  Vue.component('invoice-list-component', require('./components/InvoiceListComponent.vue').default);
  Vue.component('invoice-edit-component', require('./components/InvoiceEditComponent.vue').default);
+ Vue.component('invoice-create-component', require('./components/InvoiceCreateComponent.vue').default);
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to

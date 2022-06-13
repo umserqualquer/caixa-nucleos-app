@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+
+
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="text-center">
@@ -12,7 +14,7 @@
                             <th >Detalhes</th>
                             <th  colspan="2">A pagar</th>
                             <th  colspan="2">A receber</th>
-                            <th >#</th>
+                            <th ><invoice-create-component></invoice-create-component></th>
                         </tr>
                     </thead>
                     <tbody>

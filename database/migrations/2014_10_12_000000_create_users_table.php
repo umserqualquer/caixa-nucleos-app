@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('cpf')->unique()->nullable();
-            $table->integer('cnpj')->unique()->nullable(); 
+            $table->varchar('cpf')->unique()->nullable();
+            $table->varchar('cnpj')->unique()->nullable(); 
             $table->string('account_type')->nullable();
             $table->string('role')->nullable(); //customer, seller
             $table->rememberToken();

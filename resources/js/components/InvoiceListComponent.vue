@@ -7,13 +7,14 @@
                 <div class="text-center">
                     <h4 align="center" style="color: #283B70;">Lista de Faturas</h4>
                 </div>
-                <table class="table table-sm tabble-striped table-bordered table-responsive-sm">
+                <table class="table table-sm tabble-striped table-bordered table-responsive-sm pr-2 mr-2">
                     <thead>
                         <tr class="text-center">
                             <th >#</th>
                             <th >Detalhes</th>
                             <th  colspan="2">A pagar</th>
                             <th  colspan="2">A receber</th>
+                            <th>Vencimento</th>
                             <th ><invoice-create-component></invoice-create-component></th>
                         </tr>
                     </thead>
@@ -25,6 +26,7 @@
                             <td>047.903.730-29</td>
                             <td><strong>Cagece</strong></td>
                             <td>48.957.578/0001-67</td>
+                            <td>2022/06/13</td>
                             <td>
                                 <div>
                                     <invoice-edit-component></invoice-edit-component>
@@ -39,6 +41,7 @@
                             <td>{{ order.payer }}</td>
                             <td><strong>{{ order.receiver_name }}</strong></td>
                             <td>{{ order.receiver }}</td>
+                            <td>{{ order.due_date }}</td>
                             <td>
                                 <div>
                                     <invoice-edit-component :order="order" @restart-invoice="getOrders"></invoice-edit-component>
@@ -60,8 +63,14 @@ export default {
             orders: []
         }
     },
+    created(){
+        console.log('teste')
+        this.getOrders()
+    },
     methods: {
         getOrders(){
+
+            console.log('entrou no getorders')
 
             axios.get("order").then((response) => {
                 if (response.status == 200) {

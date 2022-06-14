@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::resource('code', CodeController::class);
-    Route::resource('connection_history', ConnectionHistoryController::class);
-    Route::resource('plan', PlanController::class);
+    Route::resource('order', OrderController::class);
 
 });
 

@@ -12,9 +12,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{-- <example-component></example-component> --}}
-                    {{-- <invoice-list-component></invoice-list-component> --}}
+                    
+                    <invoice-list-component></invoice-list-component>
 
                 </div>
             </div>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('payer');
             $table->string('receiver_name');
             $table->string('receiver');
+            $table->integer('pay');
             $table->timestamp('due_date');
             $table->timestamps();
         });

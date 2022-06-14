@@ -14,7 +14,7 @@ class Order extends Model
         'total',
         'payer_name',
         'receiver_name',
-        'due_data',
+        'due_date',
         'payer',
         'receiver',
         'pay'

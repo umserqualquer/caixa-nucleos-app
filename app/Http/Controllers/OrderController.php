@@ -18,9 +18,9 @@ class OrderController extends Controller
     public function index()
     {
         if(Auth::user()->account_type == 'cpf'){
-            return Order::where('payer', Auth::user()->cpf)->orWhere('receiver', Auth::user()->cpf);
+            return Order::where('payer', Auth::user()->cpf)->orWhere('receiver', Auth::user()->cpf)->get();
         }else{
-            return Order::where('payer', Auth::user()->cnpj)->orWhere('receiver', Auth::user()->cnpj);
+            return Order::where('payer', Auth::user()->cnpj)->orWhere('receiver', Auth::user()->cnpj)->get();
         }
 
     }
@@ -52,6 +52,7 @@ class OrderController extends Controller
             'title' => 'required'
         ]);
 
+
         if(Auth::user()->cpf){
             $receiver_identify = Auth::user()->cpf;
         }else{
@@ -64,6 +65,9 @@ class OrderController extends Controller
             $payer_identify = $request->cpnj;
         }
 
+        // dd($request->due_date);
+
+
         $result = Order::create([
             'title' => $request->title,
             'total' => $request->value,
@@ -71,7 +75,8 @@ class OrderController extends Controller
             'payer_name' => $request->name_payer,
             'payer' => $payer_identify,
             'receiver_name' => Auth::user()->name,
-            'receiver' => $receiver_identify
+            'receiver' => $receiver_identify,
+            'pay' => 0
         ]);
 
         return response()->json(['message' => 'Order criada com sucesso!', 'result' => $result]);
@@ -107,9 +112,11 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
     {
-        //
+        $data = $request->toArray();
+        $result = $order->update($data);
+        return response()->json(['message' => 'Fatura editada com sucesso!', 'result' => $result]);
     }
 
     /**
@@ -118,8 +125,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        $result = $order->delete();
+        return response()->json(['message' => 'Fatura excluída com sucesso!', 'result' => $result]);
     }
 }

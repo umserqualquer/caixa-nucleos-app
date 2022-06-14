@@ -23,9 +23,9 @@
                 <option value="cpf">CPF</option>
                 <option value="cnpj">CNPJ</option>
             </select>
-            <label v-if="selected == 'cpf'"><strong>Cpf:</strong></label>
+            <label v-if="req.selected == 'cpf'"><strong>Cpf:</strong></label>
             <b-form-input v-if="req.selected == 'cpf'" class="mb-1" type="cpf" v-model="req.cpf"></b-form-input>
-            <label v-if="selected == 'cnpj'"><strong>Cnpj:</strong></label>
+            <label v-if="req.selected == 'cnpj'"><strong>Cnpj:</strong></label>
             <b-form-input v-if="req.selected == 'cnpj'" class="mb-1" type="cnpj" v-model="req.cnpj"></b-form-input>
             <label><strong>Data de Vencimento:</strong></label>
             <b-form-datepicker v-model="req.due_date"></b-form-datepicker>
@@ -52,18 +52,16 @@ export default {
 
         return {
             errors: null,
-            selected: "cpf",
             req: {
                 id: null,
                 title: "",
                 name_payer: "",
                 payer: "",
-                name_receiver: "",
-                receiver: "",
                 due_date: today,
                 cpf: null,
                 cnpj: null,
                 selected: "cpf",
+                value: null
             }
         }
     },

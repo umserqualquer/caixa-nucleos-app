@@ -15,11 +15,12 @@
                             <th  colspan="2">A pagar</th>
                             <th  colspan="2">A receber</th>
                             <th>Vencimento</th>
-                            <th ><invoice-create-component></invoice-create-component></th>
+                            <th>Total</th>
+                            <th ><invoice-create-component @restart-invoice="getOrders()"></invoice-create-component></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center">
+                        <!-- <tr class="text-center">
                             <th scope="row">#<a href="">0000</a></th>
                             <td><small>Conta de Água</small></td>
                             <td><strong>João de Barros</strong></td>
@@ -27,12 +28,13 @@
                             <td><strong>Cagece</strong></td>
                             <td>48.957.578/0001-67</td>
                             <td>2022/06/13</td>
+                            <td>2000</td>
                             <td>
                                 <div>
                                     <invoice-edit-component></invoice-edit-component>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                         
                         <tr class="text-center" v-for="order in orders" :key="order">
                             <th scope="row">#<a href="">{{ order.id }}</a></th>
@@ -42,9 +44,10 @@
                             <td><strong>{{ order.receiver_name }}</strong></td>
                             <td>{{ order.receiver }}</td>
                             <td>{{ order.due_date }}</td>
+                            <td>{{ formatReal(order.total) }}</td>
                             <td>
                                 <div>
-                                    <invoice-edit-component :order="order" @restart-invoice="getOrders"></invoice-edit-component>
+                                    <invoice-edit-component :order="order" @restart-invoice="getOrders()"></invoice-edit-component>
                                 </div>
                             </td>
                         </tr>
@@ -74,11 +77,23 @@ export default {
 
             axios.get("order").then((response) => {
                 if (response.status == 200) {
-                    this.orders = response.data.orders;
+                    this.orders = response.data;
+
+                    console.log(response.data.orders)
                 }
             });
 
-        }
+        },
+        formatReal(int){
+        var tmp = int+'';
+        tmp = tmp.replace(/([0-9]{2})$/g, ",$1");
+        if( tmp.length > 6 )
+                tmp = tmp.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+
+        return 'R$ ' + tmp;
+        },
+        
+
     }
 };
 </script>
